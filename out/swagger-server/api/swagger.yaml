@@ -6,8 +6,8 @@ info:
   title: "procedural-design"
   contact:
     email: "mail@cozyo.io"
-host: "virtserver.swaggerhub.com"
-basePath: "/felipegtx9/procedural-design/0.0.2"
+host: "localhost:8080"
+basePath: "/"
 tags:
 - name: "design"
   description: "Designing peoples homes"
@@ -73,13 +73,18 @@ paths:
         404:
           description: "User not found"
       security:
-      - ApiKeyAuth: []
+      - ApiKeyAuthQuery: []
+      - ApiKeyAuthHeader : []
       x-swagger-router-controller: "Default"
 securityDefinitions:
-  ApiKeyAuth:
+  ApiKeyAuthHeader:
     type: "apiKey"
-    name: "X-Cozy-API-Key"
+    name: "api_key"
     in: "header"
+  ApiKeyAuthQuery:
+    type: "apiKey"
+    name: "q_api_key"
+    in: "query"
 definitions:
   ItemMetaList:
     type: "object"
