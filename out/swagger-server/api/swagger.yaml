@@ -1,0 +1,175 @@
+---
+swagger: "2.0"
+info:
+  description: "Procedural design api\n"
+  version: "0.0.2"
+  title: "procedural-design"
+  contact:
+    email: "mail@cozyo.io"
+host: "virtserver.swaggerhub.com"
+basePath: "/felipegtx9/procedural-design/0.0.2"
+tags:
+- name: "design"
+  description: "Designing peoples homes"
+  externalDocs:
+    description: "Find out more"
+    url: "https://cozyo.io"
+schemes:
+- "http"
+- "https"
+paths:
+  /design/{user_id}:
+    get:
+      summary: "Gets a design for a specified user"
+      description: "Returns a design"
+      operationId: "getDesignByUserId"
+      consumes:
+      - "application/text"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user_id"
+        in: "path"
+        description: "ID of user to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "budget"
+        in: "query"
+        required: false
+        type: "string"
+        default: "cozy"
+        x-extensible-enum:
+        - "affordable"
+        - "cozy"
+        - "luxurious"
+      - name: "room_type"
+        in: "query"
+        required: false
+        type: "string"
+        default: "bed"
+        x-extensible-enum:
+        - "living"
+        - "dining"
+        - "bed"
+        - "baby"
+        - "bath"
+      - name: "limit"
+        in: "query"
+        description: "Limit the number of items to use in the prediction"
+        required: false
+        type: "integer"
+        default: 10
+        maximum: 1000.0
+        minimum: 1
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ItemMetaList"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "User not found"
+      security:
+      - ApiKeyAuth: []
+      x-swagger-router-controller: "Default"
+securityDefinitions:
+  ApiKeyAuth:
+    type: "apiKey"
+    name: "X-Cozy-API-Key"
+    in: "header"
+definitions:
+  ItemMetaList:
+    type: "object"
+    properties:
+      ItemList:
+        type: "array"
+        items:
+          $ref: "#/definitions/ItemMeta"
+    example:
+      ItemList:
+      - Quaternion:
+          rotationw: 5.962134
+          rotationx: 0.8008282
+          rotationy: 6.0274563
+          rotationz: 1.4658129
+        Position:
+          x: 5.637377
+          y: 2.302136
+          z: 7.0614014
+        item_url: "item_url"
+        item_name: "item_name"
+      - Quaternion:
+          rotationw: 5.962134
+          rotationx: 0.8008282
+          rotationy: 6.0274563
+          rotationz: 1.4658129
+        Position:
+          x: 5.637377
+          y: 2.302136
+          z: 7.0614014
+        item_url: "item_url"
+        item_name: "item_name"
+  ItemMeta:
+    type: "object"
+    properties:
+      item_name:
+        type: "string"
+      item_url:
+        type: "string"
+      Quaternion:
+        $ref: "#/definitions/ItemMeta_Quaternion"
+      Position:
+        $ref: "#/definitions/ItemMeta_Position"
+    example:
+      Quaternion:
+        rotationw: 5.962134
+        rotationx: 0.8008282
+        rotationy: 6.0274563
+        rotationz: 1.4658129
+      Position:
+        x: 5.637377
+        y: 2.302136
+        z: 7.0614014
+      item_url: "item_url"
+      item_name: "item_name"
+  ItemMeta_Quaternion:
+    properties:
+      rotationx:
+        type: "number"
+        format: "float"
+      rotationy:
+        type: "number"
+        format: "float"
+      rotationz:
+        type: "number"
+        format: "float"
+      rotationw:
+        type: "number"
+        format: "float"
+    example:
+      rotationw: 5.962134
+      rotationx: 0.8008282
+      rotationy: 6.0274563
+      rotationz: 1.4658129
+  ItemMeta_Position:
+    properties:
+      x:
+        type: "number"
+        format: "float"
+      y:
+        type: "number"
+        format: "float"
+      z:
+        type: "number"
+        format: "float"
+    example:
+      x: 5.637377
+      y: 2.302136
+      z: 7.0614014
+externalDocs:
+  description: "Find out more about Cozyo"
+  url: "https://cozyo.io"
+x-audience: "general-public"
