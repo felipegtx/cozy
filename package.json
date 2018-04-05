@@ -1,0 +1,25 @@
+{
+    "name": "cozy",
+    "version": "0.0.2",
+    "description": "Cozyo test API",
+    "main": "src/index.js",
+    "scripts": {
+        "prestart": "npm install",
+        "start": "node src/index.js"
+    },
+    "keywords": [
+        "swagger"
+    ],
+    "license": "BSD-3-Clause",
+    "private": true,
+    "dependencies": {
+        "aws-sdk": "^2.221.1",
+        "connect": "^3.2.0",
+        "js-yaml": "^3.3.0",
+        "swagger-tools": "0.10.1",
+        "three-fbx-loader": "^1.0.3"
+    },
+    "devDependencies": {
+        "@types/aws-sdk": "^2.7.0"
+    }
+}

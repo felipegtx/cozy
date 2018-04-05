@@ -8,12 +8,8 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/out/swagger-server/index.js",
-            "preLaunchTask": "tsc: build - tsconfig.json",
-            "console": "integratedTerminal",
-            "outFiles": [
-                "${workspaceFolder}/out/**/*.js"
-            ]
+            "program": "${workspaceFolder}/src/index.js",
+            "console": "integratedTerminal"
         }
     ]
 }
