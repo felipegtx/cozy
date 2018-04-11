@@ -98,11 +98,9 @@ module.exports = (function () {
 
             }
 
-            // console.log( FBXTree );
-
             var connections = parseConnections(FBXTree);
             var images = parseImages(FBXTree);
-            var textures = {}; //parseTextures(FBXTree, new THREE.TextureLoader(this.manager).setPath(resourceDirectory), images, connections);
+            var textures = {};
             var materials = parseMaterials(FBXTree, textures, connections);
             var skeletons = parseDeformers(FBXTree, connections);
             var geometryMap = parseGeometries(FBXTree, connections, skeletons);
