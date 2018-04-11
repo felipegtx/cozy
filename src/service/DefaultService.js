@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 /**
  * Gets a design for a specified user
  * Returns a design
@@ -25,7 +23,8 @@ exports.getDesignByUserId = function (user_id, budget, room_type, limit) {
 
   const path = require('path');
   const appDir = path.dirname(require.main.filename);
-  const pathToLocalFbxFile = appDir + '/assets/FloorLamp.fbx';
+  const fbxLocalFileName = "FloorLamp.fbx";
+  const pathToLocalFbxFile = appDir + '/assets/' + fbxLocalFileName;
   const fs = require('fs');
 
   return new Promise(function (resolve, reject) {
@@ -46,62 +45,49 @@ exports.getDesignByUserId = function (user_id, budget, room_type, limit) {
       .on('httpDone', function () {
         file.end();
       })
-      .on('complete', function () {
+      .on('complete', function (fullResponse) {
 
         if (!downloadSucceded) {
           resolve();
           return;
         }
 
-        var THREE = require('three');
-        var FBXLoader = require('../fbx-reader/fbxReader.js');
-        var loader = new CustomFBXLoader();
-        var scene = new THREE.Scene();
+        const endpointInfo = fullResponse.request.httpRequest.endpoint;
         fs.readFile(pathToLocalFbxFile, null, function (err, nb) {
 
-          var ab = nb.buffer;
-          // console.log(ab); // all is well
-          // console.log(new Uint8Array(ab)); // all is well
+          const THREE = require('three');
+          const CustomFBXLoader = require('../fbx-reader/fbxReader.js');
+          const loader = new CustomFBXLoader();
+          const scene = new THREE.Scene();
+          const bufferData = nb.buffer;
+          const object3d = loader.parse(bufferData);
+          const box = new THREE.Box3().setFromObject(object3d);
+          const objectWidth = (Math.abs(box.min.x) + box.max.x);
+          const totalSpaceRequired = (objectWidth * 10);
+          const spaceOnEachSide = (totalSpaceRequired / 2);
 
-          var object3d = loader.parse(ab);
-        });
-
-        // do stuff with data
-        var examples = {
-          'application/json': {
-            "ItemList": [{
-              "Quaternion": {
-                "rotationw": 5.962134,
-                "rotationx": 0.8008282,
-                "rotationy": 6.0274563,
-                "rotationz": 1.4658129
-              },
+          var resultData = [];
+          for (var i = -spaceOnEachSide; i < spaceOnEachSide; i += objectWidth) {
+            resultData.push({
               "Position": {
-                "x": 5.637377,
-                "y": 2.302136,
-                "z": 7.0614014
+                "x": i,
+                "y": 0,
+                "z": 0
               },
-              "item_url": "item_url",
-              "item_name": "item_name"
-            }, {
-              "Quaternion": {
-                "rotationw": 5.962134,
-                "rotationx": 0.8008282,
-                "rotationy": 6.0274563,
-                "rotationz": 1.4658129
-              },
-              "Position": {
-                "x": 5.637377,
-                "y": 2.302136,
-                "z": 7.0614014
-              },
-              "item_url": "item_url",
-              "item_name": "item_name"
-            }]
+              "item_url": endpointInfo.href + awsOptions.Bucket + "/" + awsOptions.Key,
+              "item_name": awsOptions.Key
+            });
           }
-        };
+          resolve({
+            "ItemList": resultData
+            // ,"SceneDetails": {
+            //   "objectWidth": objectWidth,
+            //   "totalSpaceRequired": totalSpaceRequired,
+            //   "spaceOnEachSide": spaceOnEachSide
+            // }
+          });
 
-        resolve(examples['application/json']);
+        });
 
       })
       .send();
