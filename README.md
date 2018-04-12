@@ -1,5 +1,5 @@
 # cozy
-This is... something.
+Feeling Cozy already?
 
 ## First things first
 - `npm install`
@@ -30,3 +30,6 @@ You could either...
     - http://localhost:8080/design/1234?budget=anything&room_type=anything&limit=10&q_api_key=12345
  - Visit the awesome room at: 
     - http://localhost:8080/awesomeRoom.html
+
+## API Reference
+ - [Swagger](https://app.swaggerhub.com/apis/felipegtx9/procedural-design/0.0.2)
