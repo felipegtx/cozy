@@ -9,8 +9,8 @@ const appDir = path.dirname(require.main.filename);
 export class AwsS3Controller implements IAwsS3Controller {
     getObject(configuration: AwsConfiguration, ok: AWSS3OkGetObjectFunc, reject: AWSS3NokGetObjectFunc) {
 
-        let targetPath = '/assets/' + configuration.key;
-        let pathToLocalFbxFile = appDir + targetPath;        
+        let targetPath = '/assets/' ;
+        let pathToLocalFbxFile = appDir + targetPath + configuration.key;        
         let s3 = new AWS.S3({ region: configuration.region });
         var downloadSucceded: boolean = true;
         var file = fs.createWriteStream(pathToLocalFbxFile, { encoding: 'utf16le' });
