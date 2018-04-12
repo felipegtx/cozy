@@ -6,7 +6,6 @@ var chai = require('chai'),
 
 chai.should();
 
-
 describe("Design information services integration", function () {
 
     let fsMock = require('../service/core/io/CozyFS');
