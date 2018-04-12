@@ -1,17 +1,18 @@
 
 import * as path from "path";
-import * as fs from "fs";
 import * as AWS from "aws-sdk";
 import { AwsConfiguration } from "./AwsConfiguration";
 import * as THREE from "three";
 import * as CustomFBXLoader from "../../fbx-reader/fbxReader.js";
 import { AwsS3Controller } from "./aws/AwsS3Controller";
 import { IAwsS3Controller } from "./aws/IAwsS3Controller";
+import { CozyFS } from "./io/CozyFS";
 
 const appDir = path.dirname(require.main.filename);
 
 export class DesignInformation {
-    constructor(readonly configuration: AwsConfiguration, readonly awsController: IAwsS3Controller = new AwsS3Controller()) {
+    constructor(readonly configuration: AwsConfiguration, readonly awsController: IAwsS3Controller = new AwsS3Controller(),
+        readonly fsController: CozyFS = new CozyFS()) {
     }
 
     getObject(): Promise<DesignInformationResult> {
@@ -20,7 +21,7 @@ export class DesignInformation {
 
             this.awsController.getObject(this.configuration,
                 (endpointInfo, pathToLocalFbxFile) => {
-                    fs.readFile(pathToLocalFbxFile, null, (err, nb) => {
+                    this.fsController.readFile(pathToLocalFbxFile, null, (err, nb) => {
 
                         let bufferData = nb.buffer;
                         let loader = new CustomFBXLoader();
@@ -42,7 +43,6 @@ export class DesignInformation {
                         return result;
                     });
                 }, err => { reject(err); });
-
         });
     }
 }

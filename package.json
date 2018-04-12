@@ -19,6 +19,7 @@
         "connect": "^3.2.0",
         "js-yaml": "^3.3.0",
         "mocha": "^5.0.5",
+        "sinon": "^4.5.0",
         "swagger-tools": "0.10.1",
         "three-fbx-loader": "^1.0.3"
     },

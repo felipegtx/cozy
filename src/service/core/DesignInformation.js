@@ -1,20 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
-const fs = require("fs");
 const THREE = require("three");
 const CustomFBXLoader = require("../../fbx-reader/fbxReader.js");
 const AwsS3Controller_1 = require("./aws/AwsS3Controller");
+const CozyFS_1 = require("./io/CozyFS");
 const appDir = path.dirname(require.main.filename);
 class DesignInformation {
-    constructor(configuration, awsController = new AwsS3Controller_1.AwsS3Controller()) {
+    constructor(configuration, awsController = new AwsS3Controller_1.AwsS3Controller(), fsController = new CozyFS_1.CozyFS()) {
         this.configuration = configuration;
         this.awsController = awsController;
+        this.fsController = fsController;
     }
     getObject() {
         return new Promise((resolve, reject) => {
             this.awsController.getObject(this.configuration, (endpointInfo, pathToLocalFbxFile) => {
-                fs.readFile(pathToLocalFbxFile, null, (err, nb) => {
+                this.fsController.readFile(pathToLocalFbxFile, null, (err, nb) => {
                     let bufferData = nb.buffer;
                     let loader = new CustomFBXLoader();
                     let object3d = loader.parse(bufferData);
