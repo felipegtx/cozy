@@ -1,7 +1,9 @@
 import { AwsConfiguration } from "./AwsConfiguration";
+import { IAwsS3Controller } from "./aws/IAwsS3Controller";
 export declare class DesignInformation {
     readonly configuration: AwsConfiguration;
-    constructor(configuration: AwsConfiguration);
+    readonly awsController: IAwsS3Controller;
+    constructor(configuration: AwsConfiguration, awsController?: IAwsS3Controller);
     getObject(): Promise<DesignInformationResult>;
 }
 export declare class DesignInformationResult {

@@ -1,5 +1,4 @@
-import { awsRegion } from "./aws/enum/awsRegion";
-
+import { awsRegion } from "./enum/awsRegion";
 export declare class AwsConfiguration {
     readonly region: awsRegion;
     readonly bucket: string;

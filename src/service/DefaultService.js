@@ -12,8 +12,8 @@
  **/
 exports.getDesignByUserId = function (user_id, budget, room_type, limit) {
   let di = require('./core/DesignInformation');
-  let awsc = require('./core/AwsConfiguration');
-  let awsRegion = require('./enum/awsRegion').awsRegion;
+  let awsc = require('./core/aws/AwsConfiguration');
+  let awsRegion = require('./core/aws/enum/awsRegion').awsRegion;
 
   return new di.DesignInformation(new awsc.AwsConfiguration(
     awsRegion.EUCentral, 'cozyo-assessment-test', '000001_FloorLamp_0001.FBX'

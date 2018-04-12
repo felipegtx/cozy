@@ -5,38 +5,21 @@ import * as AWS from "aws-sdk";
 import { AwsConfiguration } from "./AwsConfiguration";
 import * as THREE from "three";
 import * as CustomFBXLoader from "../../fbx-reader/fbxReader.js";
+import { AwsS3Controller } from "./aws/AwsS3Controller";
+import { IAwsS3Controller } from "./aws/IAwsS3Controller";
 
 const appDir = path.dirname(require.main.filename);
 
 export class DesignInformation {
-    constructor(readonly configuration: AwsConfiguration) {
+    constructor(readonly configuration: AwsConfiguration, readonly awsController: IAwsS3Controller = new AwsS3Controller()) {
     }
 
     getObject(): Promise<DesignInformationResult> {
+
         return new Promise<DesignInformationResult>((resolve, reject) => {
 
-            let pathToLocalFbxFile = appDir + '/assets/' + this.configuration.targetFileName;
-            let s3 = new AWS.S3({ region: this.configuration.region });
-
-            var downloadSucceded: boolean = true;
-            var file = fs.createWriteStream(pathToLocalFbxFile, { encoding: 'utf16le' });
-            s3.getObject(this.configuration.getAwsOptions())
-                .on('error', (err) => {
-                    downloadSucceded = false;
-                    console.log("teste");
-                    reject(err);
-                })
-                .on('httpData', (chunk) => {
-                    file.write(chunk);
-                })
-                .on('httpDone', () => {
-                    file.end();
-                })
-                .on('complete', (fullResponse) => {
-
-                    if (!downloadSucceded) { reject(); return; }
-
-                    const endpointInfo = fullResponse["request"].httpRequest.endpoint;
+            this.awsController.getObject(this.configuration,
+                (endpointInfo, pathToLocalFbxFile) => {
                     fs.readFile(pathToLocalFbxFile, null, (err, nb) => {
 
                         let bufferData = nb.buffer;
@@ -50,7 +33,7 @@ export class DesignInformation {
                         let data = new Array<DesignInformationResultItem>();
                         for (var i = -spaceOnEachSide; i < spaceOnEachSide; i += objectWidth) {
                             data.push(new DesignInformationResultItem(new Point(i, 0, 0),
-                                endpointInfo.href + this.configuration.bucket + "/" + this.configuration.key,
+                                endpointInfo + this.configuration.bucket + "/" + this.configuration.key,
                                 this.configuration.key));
                         }
                         let result = new DesignInformationResult(data);
@@ -58,8 +41,8 @@ export class DesignInformation {
                         resolve(result);
                         return result;
                     });
-                })
-                .send();
+                }, err => { reject(err); });
+
         });
     }
 }
