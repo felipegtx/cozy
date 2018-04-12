@@ -3,6 +3,8 @@ import * as path from "path";
 import * as fs from "fs";
 import * as AWS from "aws-sdk";
 import { AwsConfiguration } from "./AwsConfiguration";
+import * as THREE from "three";
+import * as CustomFBXLoader from "../../fbx-reader/fbxReader.js";
 
 const appDir = path.dirname(require.main.filename);
 
@@ -21,6 +23,7 @@ export class DesignInformation {
             s3.getObject(this.configuration.getAwsOptions())
                 .on('error', (err) => {
                     downloadSucceded = false;
+                    console.log("teste");
                     reject(err);
                 })
                 .on('httpData', (chunk) => {
@@ -31,24 +34,18 @@ export class DesignInformation {
                 })
                 .on('complete', (fullResponse) => {
 
-                    if (!downloadSucceded) {
-                        resolve();
-                        return;
-                    }
+                    if (!downloadSucceded) { reject(); return; }
 
                     const endpointInfo = fullResponse["request"].httpRequest.endpoint;
                     fs.readFile(pathToLocalFbxFile, null, (err, nb) => {
 
-                        const THREE = require('three');
-                        const CustomFBXLoader = require('../../fbx-reader/fbxReader.js');
-                        const loader = new CustomFBXLoader();
-                        const scene = new THREE.Scene();
-                        const bufferData = nb.buffer;
-                        const object3d = loader.parse(bufferData);
-                        const box = new THREE.Box3().setFromObject(object3d);
-                        const objectWidth = (Math.abs(box.min.x) + box.max.x);
-                        const totalSpaceRequired = (objectWidth * 10);
-                        const spaceOnEachSide = (totalSpaceRequired / 2);
+                        let bufferData = nb.buffer;
+                        let loader = new CustomFBXLoader();
+                        let object3d = loader.parse(bufferData);
+                        let box = new THREE.Box3().setFromObject(object3d);
+                        let objectWidth = (Math.abs(box.min.x) + box.max.x);
+                        let totalSpaceRequired = (objectWidth * 10);
+                        let spaceOnEachSide = (totalSpaceRequired / 2);
 
                         let data = new Array<DesignInformationResultItem>();
                         for (var i = -spaceOnEachSide; i < spaceOnEachSide; i += objectWidth) {
@@ -57,6 +54,7 @@ export class DesignInformation {
                                 this.configuration.key));
                         }
                         let result = new DesignInformationResult(data);
+
                         resolve(result);
                         return result;
                     });
@@ -66,15 +64,15 @@ export class DesignInformation {
     }
 }
 
-class DesignInformationResult {
+export class DesignInformationResult {
     constructor(readonly ItemList: Array<DesignInformationResultItem>) { }
 }
 
-class DesignInformationResultItem {
+export class DesignInformationResultItem {
     constructor(readonly Position: Point, readonly item_url: string, readonly item_name: string) {
     }
 }
 
-class Point {
+export class Point {
     constructor(readonly x: number, readonly y: number, readonly z: number) { }
 }

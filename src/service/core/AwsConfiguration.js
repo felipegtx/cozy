@@ -15,3 +15,4 @@ class AwsConfiguration {
     }
 }
 exports.AwsConfiguration = AwsConfiguration;
+//# sourceMappingURL=AwsConfiguration.js.map

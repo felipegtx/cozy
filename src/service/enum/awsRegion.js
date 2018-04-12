@@ -4,3 +4,4 @@ var awsRegion;
 (function (awsRegion) {
     awsRegion["EUCentral"] = "eu-central-1";
 })(awsRegion = exports.awsRegion || (exports.awsRegion = {}));
+//# sourceMappingURL=awsRegion.js.map

@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
 const fs = require("fs");
 const AWS = require("aws-sdk");
+const THREE = require("three");
+const CustomFBXLoader = require("../../fbx-reader/fbxReader.js");
 const appDir = path.dirname(require.main.filename);
 class DesignInformation {
     constructor(configuration) {
@@ -17,6 +19,7 @@ class DesignInformation {
             s3.getObject(this.configuration.getAwsOptions())
                 .on('error', (err) => {
                 downloadSucceded = false;
+                console.log("teste");
                 reject(err);
             })
                 .on('httpData', (chunk) => {
@@ -27,21 +30,18 @@ class DesignInformation {
             })
                 .on('complete', (fullResponse) => {
                 if (!downloadSucceded) {
-                    resolve();
+                    reject();
                     return;
                 }
                 const endpointInfo = fullResponse["request"].httpRequest.endpoint;
                 fs.readFile(pathToLocalFbxFile, null, (err, nb) => {
-                    const THREE = require('three');
-                    const CustomFBXLoader = require('../../fbx-reader/fbxReader.js');
-                    const loader = new CustomFBXLoader();
-                    const scene = new THREE.Scene();
-                    const bufferData = nb.buffer;
-                    const object3d = loader.parse(bufferData);
-                    const box = new THREE.Box3().setFromObject(object3d);
-                    const objectWidth = (Math.abs(box.min.x) + box.max.x);
-                    const totalSpaceRequired = (objectWidth * 10);
-                    const spaceOnEachSide = (totalSpaceRequired / 2);
+                    let bufferData = nb.buffer;
+                    let loader = new CustomFBXLoader();
+                    let object3d = loader.parse(bufferData);
+                    let box = new THREE.Box3().setFromObject(object3d);
+                    let objectWidth = (Math.abs(box.min.x) + box.max.x);
+                    let totalSpaceRequired = (objectWidth * 10);
+                    let spaceOnEachSide = (totalSpaceRequired / 2);
                     let data = new Array();
                     for (var i = -spaceOnEachSide; i < spaceOnEachSide; i += objectWidth) {
                         data.push(new DesignInformationResultItem(new Point(i, 0, 0), endpointInfo.href + this.configuration.bucket + "/" + this.configuration.key, this.configuration.key));
@@ -61,6 +61,7 @@ class DesignInformationResult {
         this.ItemList = ItemList;
     }
 }
+exports.DesignInformationResult = DesignInformationResult;
 class DesignInformationResultItem {
     constructor(Position, item_url, item_name) {
         this.Position = Position;
@@ -68,6 +69,7 @@ class DesignInformationResultItem {
         this.item_name = item_name;
     }
 }
+exports.DesignInformationResultItem = DesignInformationResultItem;
 class Point {
     constructor(x, y, z) {
         this.x = x;
@@ -75,3 +77,5 @@ class Point {
         this.z = z;
     }
 }
+exports.Point = Point;
+//# sourceMappingURL=DesignInformation.js.map

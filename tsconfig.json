@@ -3,9 +3,11 @@
         "target": "es2015",
         "module": "commonjs",
         "moduleResolution": "node",
-        "sourceMap": false,
-        "rootDir": "src"
+        "sourceMap": true,
+        "declaration": true,
+        "rootDir": "src",
     },
+    "compileOnSave": true,
     "include": [
         "src/**/*"
     ],
