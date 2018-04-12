@@ -5,6 +5,9 @@ const THREE = require("three");
 const CustomFBXLoader = require("../../fbx-reader/fbxReader.js");
 const AwsS3Controller_1 = require("./aws/AwsS3Controller");
 const CozyFS_1 = require("./io/CozyFS");
+const DesignInformationResult_1 = require("./DesignInformationResult");
+const DesignInformationResultItem_1 = require("./DesignInformationResultItem");
+const Point_1 = require("./Point");
 const appDir = path.dirname(require.main.filename);
 class DesignInformation {
     constructor(configuration, awsController = new AwsS3Controller_1.AwsS3Controller(), fsController = new CozyFS_1.CozyFS()) {
@@ -25,9 +28,9 @@ class DesignInformation {
                     let spaceOnEachSide = (totalSpaceRequired / 2);
                     let data = new Array();
                     for (var i = -spaceOnEachSide; i < spaceOnEachSide; i += objectWidth) {
-                        data.push(new DesignInformationResultItem(new Point(i, 0, 0), endpointInfo + this.configuration.bucket + "/" + this.configuration.key, this.configuration.key));
+                        data.push(new DesignInformationResultItem_1.DesignInformationResultItem(new Point_1.Point(i, 0, 0), endpointInfo + this.configuration.bucket + "/" + this.configuration.key, this.configuration.key));
                     }
-                    let result = new DesignInformationResult(data);
+                    let result = new DesignInformationResult_1.DesignInformationResult(data);
                     resolve(result);
                     return result;
                 });
@@ -36,26 +39,4 @@ class DesignInformation {
     }
 }
 exports.DesignInformation = DesignInformation;
-class DesignInformationResult {
-    constructor(ItemList) {
-        this.ItemList = ItemList;
-    }
-}
-exports.DesignInformationResult = DesignInformationResult;
-class DesignInformationResultItem {
-    constructor(Position, item_url, item_name) {
-        this.Position = Position;
-        this.item_url = item_url;
-        this.item_name = item_name;
-    }
-}
-exports.DesignInformationResultItem = DesignInformationResultItem;
-class Point {
-    constructor(x, y, z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-}
-exports.Point = Point;
 //# sourceMappingURL=DesignInformation.js.map

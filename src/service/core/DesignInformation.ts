@@ -7,6 +7,9 @@ import * as CustomFBXLoader from "../../fbx-reader/fbxReader.js";
 import { AwsS3Controller } from "./aws/AwsS3Controller";
 import { IAwsS3Controller } from "./aws/IAwsS3Controller";
 import { CozyFS } from "./io/CozyFS";
+import { DesignInformationResult } from "./DesignInformationResult";
+import { DesignInformationResultItem } from "./DesignInformationResultItem";
+import { Point } from "./Point";
 
 const appDir = path.dirname(require.main.filename);
 
@@ -45,17 +48,4 @@ export class DesignInformation {
                 }, err => { reject(err); });
         });
     }
-}
-
-export class DesignInformationResult {
-    constructor(readonly ItemList: Array<DesignInformationResultItem>) { }
-}
-
-export class DesignInformationResultItem {
-    constructor(readonly Position: Point, readonly item_url: string, readonly item_name: string) {
-    }
-}
-
-export class Point {
-    constructor(readonly x: number, readonly y: number, readonly z: number) { }
 }
