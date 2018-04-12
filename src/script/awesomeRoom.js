@@ -1,5 +1,3 @@
-// Simple three.js example
-
 if (!Detector.webgl) Detector.addGetWebGLMessage();
 
 var mesh, renderer, scene, camera, controls,
@@ -102,14 +100,14 @@ function init() {
         /// Back wall
         var backWall = new THREE.ParametricBufferGeometry(THREE.ParametricGeometries.plane(roomWidth, roomHeight), 10, 10);
         var backWallMesh = new THREE.Mesh(backWall, wallsMaterial);
-        backWallMesh.position.set(-roomEdge, 0, -(roomDepth/2));
+        backWallMesh.position.set(-roomEdge, 0, -(roomDepth / 2));
         backWallMesh.rotation.x = pi2;
         scene.add(backWallMesh);
 
         /// Left wall
         var leftWall = new THREE.ParametricBufferGeometry(THREE.ParametricGeometries.plane(roomDepth, roomHeight), 10, 10);
         var leftWallMesh = new THREE.Mesh(leftWall, wallsMaterial);
-        leftWallMesh.position.set(-roomEdge, 0, (roomDepth/2));
+        leftWallMesh.position.set(-roomEdge, 0, (roomDepth / 2));
         leftWallMesh.rotation.x = pi2;
         leftWallMesh.rotation.z = -pi2;
         scene.add(leftWallMesh);
@@ -117,7 +115,7 @@ function init() {
         /// Right wall
         var rightWall = new THREE.ParametricBufferGeometry(THREE.ParametricGeometries.plane(roomDepth, roomHeight), 10, 10);
         var rightWallMesh = new THREE.Mesh(rightWall, wallsMaterial);
-        rightWallMesh.position.set(roomEdge, 0, -(roomDepth/2));
+        rightWallMesh.position.set(roomEdge, 0, -(roomDepth / 2));
         rightWallMesh.rotation.x = pi2;
         rightWallMesh.rotation.z = pi2;
         scene.add(rightWallMesh);
@@ -125,13 +123,13 @@ function init() {
         /// Ceiling
         var ceileing = new THREE.ParametricBufferGeometry(THREE.ParametricGeometries.plane(roomWidth, roomDepth), 10, 10);
         var ceileingMesh = new THREE.Mesh(ceileing, wallsMaterial);
-        ceileingMesh.position.set(-roomEdge, roomHeight, -(roomDepth/2));
+        ceileingMesh.position.set(-roomEdge, roomHeight, -(roomDepth / 2));
         scene.add(ceileingMesh);
 
         /// Front wall
         var frontWall = new THREE.ParametricBufferGeometry(THREE.ParametricGeometries.plane(roomWidth, roomHeight), 10, 10);
         var frontWallMesh = new THREE.Mesh(frontWall, wallsMaterial);
-        frontWallMesh.position.set(roomEdge, 0, (roomDepth/2));
+        frontWallMesh.position.set(roomEdge, 0, (roomDepth / 2));
         frontWallMesh.rotation.x = pi2;
         frontWallMesh.rotation.z = Math.PI;
         scene.add(frontWallMesh);

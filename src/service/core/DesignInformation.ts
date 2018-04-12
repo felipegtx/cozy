@@ -31,7 +31,7 @@ export class DesignInformation {
                         let object3d = loader.parse(bufferData);
                         let box = new THREE.Box3().setFromObject(object3d);
                         let objectWidth = (Math.abs(box.min.x) + box.max.x);
-                        let midPoint = box.max.x;	
+                        let midPoint = box.max.x;
                         let totalSpaceRequired = (objectWidth * 10);
                         let spaceOnEachSide = (totalSpaceRequired / 2);
 
