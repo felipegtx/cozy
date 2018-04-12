@@ -44,13 +44,12 @@ export class DesignInformation {
                         let object3d = loader.parse(bufferData);
                         let box = new THREE.Box3().setFromObject(object3d);
                         let objectWidth = (Math.abs(box.min.x) + box.max.x);
-                        let midPoint = box.max.x;
                         let totalSpaceRequired = (objectWidth * 10);
                         let spaceOnEachSide = (totalSpaceRequired / 2);
 
                         let data = new Array<DesignInformationResultItem>();
                         for (var i = -spaceOnEachSide; i < spaceOnEachSide; i += objectWidth) {
-                            data.push(new DesignInformationResultItem(new Point(i + midPoint, 0, 0),
+                            data.push(new DesignInformationResultItem(new Point(i, 0, 0),
                                 endpointInfo.href + this.configuration.bucket + "/" + this.configuration.key,
                                 this.configuration.key));
                         }
