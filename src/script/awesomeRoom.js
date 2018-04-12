@@ -13,7 +13,7 @@ function init() {
     // renderer
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x889988);
+    renderer.setClearColor(0xEEEEEE);
     document.body.appendChild(renderer.domElement);
 
     // scene
@@ -31,10 +31,10 @@ function init() {
     controls.maxPolarAngle = Math.PI / 2;
 
     // ambient
-    scene.add(new THREE.AmbientLight(0x444444));
+    scene.add(new THREE.AmbientLight(0xFFFF00));
 
     // light
-    var light = new THREE.PointLight(0xffffff, 0.8);
+    var light = new THREE.PointLight(0xffffff, 0.9);
     camera.add(light);
 
     // model
