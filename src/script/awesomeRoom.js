@@ -21,7 +21,7 @@ function init() {
 
     // camera
     camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.set(20, 20, 20);
+    camera.position.set(100, 500, 500);
     scene.add(camera); // required, since adding light as child of camera
 
     // controls
