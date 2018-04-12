@@ -2,7 +2,7 @@
 This is... something.
 
 ## Running this project
-You basically have to main options.
+You basically have two options.
 
 ### Brace yourself.
 - `npm install`
