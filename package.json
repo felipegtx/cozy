@@ -14,8 +14,10 @@
     "private": true,
     "dependencies": {
         "aws-sdk": "^2.221.1",
+        "chai": "^4.1.2",
         "connect": "^3.2.0",
         "js-yaml": "^3.3.0",
+        "mocha": "^5.0.5",
         "swagger-tools": "0.10.1",
         "three-fbx-loader": "^1.0.3"
     },
