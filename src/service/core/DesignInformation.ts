@@ -23,7 +23,7 @@ export class DesignInformation {
         return new Promise<DesignInformationResult>((resolve, reject) => {
 
             this.awsController.getObject(this.configuration,
-                (endpointInfo, pathToLocalFbxFile) => {
+                (pathToLocalFbxFile, targetPath) => {
                     this.fsController.readFile(pathToLocalFbxFile, null, (err, nb) => {
 
                         let bufferData = nb.buffer;
@@ -37,8 +37,7 @@ export class DesignInformation {
                         let data = new Array<DesignInformationResultItem>();
                         for (var i = -spaceOnEachSide; i < spaceOnEachSide; i += objectWidth) {
                             data.push(new DesignInformationResultItem(new Point(i, 0, 0),
-                                endpointInfo + this.configuration.bucket + "/" + this.configuration.key,
-                                this.configuration.key));
+                                targetPath, this.configuration.key));
                         }
                         let result = new DesignInformationResult(data);
 

@@ -9,5 +9,5 @@ export interface AWSS3NokGetObjectFunc {
     (err: any): any;
 }
 export interface AWSS3OkGetObjectFunc {
-    (endpointInfo: string, pathToLocalFbxFile: string): any;
+    (pathToLocalFbxFile: string, targetPath: string): any;
 }

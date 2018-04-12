@@ -6,7 +6,8 @@ const path = require("path");
 const appDir = path.dirname(require.main.filename);
 class AwsS3Controller {
     getObject(configuration, ok, reject) {
-        let pathToLocalFbxFile = appDir + '/assets/' + configuration.targetFileName;
+        let targetPath = '/assets/' + configuration.key;
+        let pathToLocalFbxFile = appDir + targetPath;
         let s3 = new AWS.S3({ region: configuration.region });
         var downloadSucceded = true;
         var file = fs.createWriteStream(pathToLocalFbxFile, { encoding: 'utf16le' });
@@ -26,8 +27,7 @@ class AwsS3Controller {
                 reject("Nok");
                 return;
             }
-            const endpointInfo = fullResponse["request"].httpRequest.endpoint.href;
-            ok(endpointInfo, pathToLocalFbxFile);
+            ok(pathToLocalFbxFile, targetPath);
         })
             .send();
     }

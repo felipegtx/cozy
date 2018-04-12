@@ -1,11 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class AwsConfiguration {
-    constructor(region, bucket, key, targetFileName = "FloorLamp.fbx") {
+    constructor(region, bucket, key) {
         this.region = region;
         this.bucket = bucket;
         this.key = key;
-        this.targetFileName = targetFileName;
     }
     getAwsOptions() {
         return {

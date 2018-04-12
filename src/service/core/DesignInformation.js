@@ -17,7 +17,7 @@ class DesignInformation {
     }
     getObject() {
         return new Promise((resolve, reject) => {
-            this.awsController.getObject(this.configuration, (endpointInfo, pathToLocalFbxFile) => {
+            this.awsController.getObject(this.configuration, (pathToLocalFbxFile, targetPath) => {
                 this.fsController.readFile(pathToLocalFbxFile, null, (err, nb) => {
                     let bufferData = nb.buffer;
                     let loader = new CustomFBXLoader();
@@ -28,7 +28,7 @@ class DesignInformation {
                     let spaceOnEachSide = (totalSpaceRequired / 2);
                     let data = new Array();
                     for (var i = -spaceOnEachSide; i < spaceOnEachSide; i += objectWidth) {
-                        data.push(new DesignInformationResultItem_1.DesignInformationResultItem(new Point_1.Point(i, 0, 0), endpointInfo + this.configuration.bucket + "/" + this.configuration.key, this.configuration.key));
+                        data.push(new DesignInformationResultItem_1.DesignInformationResultItem(new Point_1.Point(i, 0, 0), targetPath, this.configuration.key));
                     }
                     let result = new DesignInformationResult_1.DesignInformationResult(data);
                     resolve(result);

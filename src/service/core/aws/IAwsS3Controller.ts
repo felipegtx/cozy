@@ -13,5 +13,5 @@ export interface AWSS3NokGetObjectFunc {
 }
 
 export interface AWSS3OkGetObjectFunc {
-    (endpointInfo: string, pathToLocalFbxFile: string);
+    (pathToLocalFbxFile: string, targetPath:string);
 }

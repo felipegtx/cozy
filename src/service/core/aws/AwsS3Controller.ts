@@ -9,7 +9,8 @@ const appDir = path.dirname(require.main.filename);
 export class AwsS3Controller implements IAwsS3Controller {
     getObject(configuration: AwsConfiguration, ok: AWSS3OkGetObjectFunc, reject: AWSS3NokGetObjectFunc) {
 
-        let pathToLocalFbxFile = appDir + '/assets/' + configuration.targetFileName;        
+        let targetPath = '/assets/' + configuration.key;
+        let pathToLocalFbxFile = appDir + targetPath;        
         let s3 = new AWS.S3({ region: configuration.region });
         var downloadSucceded: boolean = true;
         var file = fs.createWriteStream(pathToLocalFbxFile, { encoding: 'utf16le' });
@@ -28,8 +29,7 @@ export class AwsS3Controller implements IAwsS3Controller {
             .on('complete', (fullResponse) => {
 
                 if (!downloadSucceded) { reject("Nok"); return; }
-                const endpointInfo = fullResponse["request"].httpRequest.endpoint.href;
-                ok(endpointInfo, pathToLocalFbxFile);
+                ok(pathToLocalFbxFile, targetPath);
 
             })
             .send();
