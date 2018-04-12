@@ -13,6 +13,7 @@
     "license": "BSD-3-Clause",
     "private": true,
     "dependencies": {
+        "@types/node": "^9.6.4",
         "aws-sdk": "^2.221.1",
         "chai": "^4.1.2",
         "connect": "^3.2.0",

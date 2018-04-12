@@ -1,4 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var awsRegion;
 (function (awsRegion) {
     awsRegion["EUCentral"] = "eu-central-1";
-})(awsRegion || (awsRegion = {}));
+})(awsRegion = exports.awsRegion || (exports.awsRegion = {}));
