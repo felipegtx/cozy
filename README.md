@@ -4,14 +4,14 @@ Feeling Cozy already?
 ## First things first
 - `npm install`
 
-## 1. Running this project
+## Running this project
 You basically have two options.
 
-### 2. Compile and start by hand
+### 1. Compile and start by hand
  - `tsc -p tsconfig.json`
  - `node src\index.js`
 
-### Compile and start using VSCode
+### 2. Compile and start using VSCode
  - Hit F5 using the "Launch Program" profile.
 
 ## Runing the tests
