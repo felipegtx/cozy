@@ -1,13 +1,13 @@
 # cozy
 This is... something.
 
-## Running this project
-You basically have two options.
-
-### Brace yourself.
+## First things first
 - `npm install`
 
-### Compile and start by hand
+## 1. Running this project
+You basically have two options.
+
+### 2. Compile and start by hand
  - `tsc -p tsconfig.json`
  - `node src\index.js`
 
@@ -17,14 +17,11 @@ You basically have two options.
 ## Runing the tests
 Not that we have that many, but you also have two options
 
-### Brace yourself.
-- `npm install`
-
-### Run tests by hand
+### 1. Run tests by hand
  - If this is your very first time here, you'll need to run a quick: `tsc -p tsconfig.json`
  - `mocha ./src/tests/getDesignByUserIdTests.js`
 
-### Use VSCode to run the tests
+### 2. Use VSCode to run the tests
  - Open the test file and hit F5 using the "Mocha Current File" profile.
 
 ## What can I do with this?
