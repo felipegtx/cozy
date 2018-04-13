@@ -7,4 +7,5 @@ cache:
   - node_modules/
 
 script:
+  - tsc -p tsconfig.json
   - npm run test
