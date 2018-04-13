@@ -5,7 +5,8 @@
     "main": "src/index.js",
     "scripts": {
         "prestart": "npm install",
-        "start": "node src/index.js"
+        "start": "node src/index.js",
+        "test": "mocha src/tests/getDesignByUserIdTests.js -t 1800000"
     },
     "keywords": [
         "swagger"
