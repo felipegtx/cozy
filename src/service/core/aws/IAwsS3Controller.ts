@@ -1,4 +1,4 @@
-import { AwsConfiguration } from "../AwsConfiguration";
+import { AwsConfiguration } from "./AwsConfiguration";
 
 export interface IAwsS3Controller {
     getObject: AWSS3GetObjectFunc;

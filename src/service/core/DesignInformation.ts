@@ -1,7 +1,7 @@
 
 import * as path from "path";
 import * as AWS from "aws-sdk";
-import { AwsConfiguration } from "./AwsConfiguration";
+import { AwsConfiguration } from "./aws/AwsConfiguration";
 import * as THREE from "three";
 import * as CustomFBXLoader from "../../fbx-reader/fbxReader.js";
 import { AwsS3Controller } from "./aws/AwsS3Controller";

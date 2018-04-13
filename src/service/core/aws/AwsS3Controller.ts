@@ -1,5 +1,5 @@
 import { IAwsS3Controller, AWSS3OkGetObjectFunc, AWSS3NokGetObjectFunc } from "./IAwsS3Controller";
-import { AwsConfiguration } from "../AwsConfiguration";
+import { AwsConfiguration } from "./AwsConfiguration";
 import AWS = require("aws-sdk");
 import * as fs from "fs";
 import * as path from "path";
