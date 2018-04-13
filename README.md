@@ -1,4 +1,4 @@
-# cozy
+# cozy [![Build Status](https://travis-ci.org/felipegtx/cozy.svg?branch=master)](https://travis-ci.org/felipegtx/cozy)
 Feeling Cozy already?
 
 ## First things first
