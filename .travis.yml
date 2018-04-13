@@ -6,6 +6,9 @@ node_js:
 cache:
   - node_modules/
 
+before_install:
+ - npm install -g typescript
+
 script:
   - tsc -p tsconfig.json
   - npm run test
