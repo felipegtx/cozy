@@ -24,6 +24,11 @@ Not that we have that many, but you also have two options
 ### 2. Use VSCode to run the tests
  - Open the test file and hit F5 using the "Mocha Current File" profile.
 
+## Docker
+ - Get your `awsKey` and `awsSecret` from the `~/.aws/credentials` file and use it to build the docker Image: `docker build --build-arg awsKey=yourkey --build-arg awsSecret=yourSecret -t cozyo .`
+ - Start the docker container: `docker run --name cozy -p 8080:8080 cozyo`
+- http://localhost:8080/awesomeRoom.html
+
 ## What can I do with this?
 You could either...
  - View the test data at:

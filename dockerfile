@@ -1,12 +1,19 @@
-FROM node:carbon
+FROM node
 
-WORKDIR /usr/src/app
-
-COPY package*.json ./
-COPY . .
-
-RUN npm install
+ARG awsKey
+ARG awsSecret
 
 EXPOSE 8080
 
-CMD [ "prestart", "start" ]
+WORKDIR /app/
+
+COPY package*.json /app/
+
+RUN npm install
+
+COPY . /app/
+
+ENV AWS_ACCESS_KEY_ID=$awsKey
+ENV AWS_SECRET_ACCESS_KEY=$awsSecret
+
+CMD [ "npm", "start" ]
