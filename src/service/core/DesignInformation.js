@@ -21,10 +21,10 @@ class DesignInformation {
             this.awsController.getObject(this.configuration, (pathToLocalFbxFile, targetPath) => {
                 this.fsController.readFile(pathToLocalFbxFile, null, (err, nb) => {
                     let bufferData = nb.buffer;
-                    var box = this.geometryController.loadFrom(bufferData, this.totalItemsToLoad);
+                    var box = this.geometryController.loadFrom(bufferData);
                     let objectWidth = box.width();
                     let midPoint = box.max.x;
-                    let totalSpaceRequired = (objectWidth * 10);
+                    let totalSpaceRequired = (objectWidth * this.totalItemsToLoad);
                     let spaceOnEachSide = (totalSpaceRequired / 2);
                     let data = new Array();
                     for (var i = -spaceOnEachSide; i < spaceOnEachSide; i += objectWidth) {

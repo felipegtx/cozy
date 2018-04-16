@@ -30,7 +30,7 @@ export class DesignInformation {
                     this.fsController.readFile(pathToLocalFbxFile, null, (err, nb) => {
 
                         let bufferData = nb.buffer;
-                        var box = this.geometryController.loadFrom(bufferData, this.totalItemsToLoad);
+                        var box = this.geometryController.loadFrom(bufferData);
                         let objectWidth = box.width();
                         let midPoint = box.max.x;
                         let totalSpaceRequired = (objectWidth * this.totalItemsToLoad);

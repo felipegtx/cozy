@@ -5,7 +5,7 @@ import { Point } from "../Point";
 import * as THREE from "three";
 
 export class ThreeJsController implements IGeometryController {
-    loadFrom(buffer: ArrayBuffer, objectCount: number): Box3D {
+    loadFrom(buffer: ArrayBuffer): Box3D {
 
         let loader = new CustomFBXLoader();
         let object3d = loader.parse(buffer);

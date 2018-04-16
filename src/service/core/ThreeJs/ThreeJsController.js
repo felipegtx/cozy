@@ -5,7 +5,7 @@ const Box3D_1 = require("../Box3D");
 const Point_1 = require("../Point");
 const THREE = require("three");
 class ThreeJsController {
-    loadFrom(buffer, objectCount) {
+    loadFrom(buffer) {
         let loader = new CustomFBXLoader();
         let object3d = loader.parse(buffer);
         let box = new THREE.Box3().setFromObject(object3d);
