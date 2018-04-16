@@ -26,7 +26,7 @@ Not that we have that many, but you also have two options
 
 ## Docker
  - Get your `awsKey` and `awsSecret` from the `~/.aws/credentials` file and use it to build the docker Image: `docker build --build-arg awsKey=yourkey --build-arg awsSecret=yourSecret -t cozyo .`
- - Start the docker container: `docker run --name cozy -p 8080:8080 cozyo`
+ - Start the docker container: `docker run --name cozy -p 8081:8080 cozyo`
 
 ## What can I do with this?
 You could either...
