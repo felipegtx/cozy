@@ -26,6 +26,7 @@
         "three-fbx-loader": "^1.0.3"
     },
     "devDependencies": {
-        "@types/aws-sdk": "^2.7.0"
+        "@types/aws-sdk": "^2.7.0",
+        "@types/jquery": "^3.3.1"
     }
 }

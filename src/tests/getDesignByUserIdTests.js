@@ -53,6 +53,8 @@ describe("Design information services integration", function () {
         
         desingInformation.getObject();
         mockedFS.readFile.called.should.be.true;
+        mockedFS.readFile.calledOnce.should.be.true;
+        mockedFS.readFile.calledWith(mockedAwsController.defaultMessage);
 
     });
 });
