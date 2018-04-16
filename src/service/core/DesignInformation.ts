@@ -33,7 +33,7 @@ export class DesignInformation {
                         var box = this.geometryController.loadFrom(bufferData, this.totalItemsToLoad);
                         let objectWidth = box.width();
                         let midPoint = box.max.x;
-                        let totalSpaceRequired = (objectWidth * 10);
+                        let totalSpaceRequired = (objectWidth * this.totalItemsToLoad);
                         let spaceOnEachSide = (totalSpaceRequired / 2);
 
                         let data = new Array<DesignInformationResultItem>();
