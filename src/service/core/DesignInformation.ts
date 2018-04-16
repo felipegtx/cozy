@@ -2,20 +2,23 @@
 import * as path from "path";
 import * as AWS from "aws-sdk";
 import { AwsConfiguration } from "./aws/AwsConfiguration";
-import * as THREE from "three";
-import * as CustomFBXLoader from "../../fbx-reader/fbxReader.js";
 import { AwsS3Controller } from "./aws/AwsS3Controller";
 import { IAwsS3Controller } from "./aws/IAwsS3Controller";
 import { CozyFS } from "./io/CozyFS";
 import { DesignInformationResult } from "./DesignInformationResult";
 import { DesignInformationResultItem } from "./DesignInformationResultItem";
 import { Point } from "./Point";
+import { ThreeJsController } from "./ThreeJs/ThreeJsController";
+import { IGeometryController } from "./IGeometryController";
 
 const appDir = path.dirname(require.main.filename);
 
 export class DesignInformation {
-    constructor(readonly configuration: AwsConfiguration, readonly awsController: IAwsS3Controller = new AwsS3Controller(),
-        readonly fsController: CozyFS = new CozyFS()) {
+    constructor(readonly configuration: AwsConfiguration,
+        readonly awsController: IAwsS3Controller = new AwsS3Controller(),
+        readonly fsController: CozyFS = new CozyFS(),
+        readonly geometryController: IGeometryController = new ThreeJsController(),
+        readonly totalItemsToLoad: number = 10) {
     }
 
     getObject(): Promise<DesignInformationResult> {
@@ -27,10 +30,8 @@ export class DesignInformation {
                     this.fsController.readFile(pathToLocalFbxFile, null, (err, nb) => {
 
                         let bufferData = nb.buffer;
-                        let loader = new CustomFBXLoader();
-                        let object3d = loader.parse(bufferData);
-                        let box = new THREE.Box3().setFromObject(object3d);
-                        let objectWidth = (Math.abs(box.min.x) + box.max.x);
+                        var box = this.geometryController.loadFrom(bufferData, this.totalItemsToLoad);
+                        let objectWidth = box.width();
                         let midPoint = box.max.x;
                         let totalSpaceRequired = (objectWidth * 10);
                         let spaceOnEachSide = (totalSpaceRequired / 2);
