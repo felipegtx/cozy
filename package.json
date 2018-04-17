@@ -14,7 +14,7 @@
     "license": "BSD-3-Clause",
     "private": true,
     "dependencies": {
-        "@types/node": "^9.6.4",
+        "@types/node": "^9.6.5",
         "aws-sdk": "^2.224.1",
         "chai": "^4.1.2",
         "chai-as-promised": "^7.1.1",
@@ -23,7 +23,7 @@
         "mocha": "^5.1.0",
         "serve-static": "^1.13.2",
         "sinon": "^4.5.0",
-        "swagger-tools": "0.10.1",
+        "swagger-tools": "0.10.2",
         "three-fbx-loader": "^1.0.3"
     },
     "devDependencies": {

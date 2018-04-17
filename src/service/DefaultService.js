@@ -11,11 +11,11 @@
  * returns ItemMetaList
  **/
 exports.getDesignByUserId = function (user_id, budget, room_type, limit) {
-  let di = require('./core/DesignInformation');
-  let awsc = require('./core/aws/AwsConfiguration');
+  let DesignInformation = require('./core/DesignInformation').DesignInformation;
+  let AwsConfiguration = require('./core/aws/AwsConfiguration').AwsConfiguration;
   let awsRegion = require('./core/aws/enum/awsRegion').awsRegion;
 
-  return new di.DesignInformation(new awsc.AwsConfiguration(
+  return new DesignInformation(new AwsConfiguration(
     awsRegion.EUCentral, 'cozyo-assessment-test', '000001_FloorLamp_0001.FBX'
   )).getObject();
 
