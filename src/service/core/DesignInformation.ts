@@ -1,4 +1,3 @@
-
 import * as path from "path";
 import * as AWS from "aws-sdk";
 import { AwsConfiguration } from "./aws/AwsConfiguration";
@@ -7,8 +6,8 @@ import { IAwsS3Controller } from "./aws/IAwsS3Controller";
 import { DesignInformationResult } from "./DesignInformationResult";
 import { DesignInformationResultItem } from "./DesignInformationResultItem";
 import { Point } from "./Point";
-import { ThreeJsController } from "./threeJs/ThreeJsController";
 import { IGeometryController } from "./IGeometryController";
+import { ThreeJsController } from "./threeJs/ThreeJsController";
 
 const appDir = path.dirname(require.main.filename);
 
