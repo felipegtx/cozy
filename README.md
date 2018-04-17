@@ -1,4 +1,5 @@
-# cozy [![Build Status](https://travis-ci.org/felipegtx/cozy.svg?branch=master)](https://travis-ci.org/felipegtx/cozy)
+# cozy [![Build Status](https://travis-ci.org/felipegtx/cozy.svg?branch=master)](https://travis-ci.org/felipegtx/cozy) [![Known Vulnerabilities](https://snyk.io/test/github/felipegtx/cozy/badge.svg)](https://snyk.io/test/github/felipegtx/cozy)
+
 Feeling Cozy already?
 
 ## First things first
