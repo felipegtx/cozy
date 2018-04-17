@@ -14,6 +14,10 @@ class ThreeJsController {
             let start;
             let end;
             this.fsController.readFile(pathToLocalFbxFile, null, (err, nb) => {
+                if (err) {
+                    reject(err);
+                    return null;
+                }
                 let bufferData = nb.buffer;
                 let loader = new CustomFBXLoader();
                 let object3d = loader.parse(bufferData);
@@ -22,7 +26,6 @@ class ThreeJsController {
                 end = new Point_1.Point(box.max.x, box.max.y, box.max.z);
                 let result = new Box3D_1.Box3D(start, end);
                 resolve(result);
-                return result;
             });
         });
     }

@@ -18,6 +18,11 @@ export class ThreeJsController implements IGeometryController {
             let end: Point;
 
             this.fsController.readFile(pathToLocalFbxFile, null, (err, nb) => {
+                
+                if (err) { 
+                    reject(err);
+                    return null;
+                }
 
                 let bufferData = nb.buffer;
                 let loader = new CustomFBXLoader();
@@ -27,8 +32,8 @@ export class ThreeJsController implements IGeometryController {
                 start = new Point(box.min.x, box.min.y, box.min.z);
                 end = new Point(box.max.x, box.max.y, box.max.z);
                 let result = new Box3D(start, end);
+
                 resolve(result);
-                return result;
 
             });
 
