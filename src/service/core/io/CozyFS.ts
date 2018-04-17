@@ -1,5 +1,5 @@
-import { PathLike } from "fs";
-import * as fs from "fs";
+import { PathLike } from 'fs';
+import * as fs from 'fs';
 
 export class CozyFS { 
     readFile(path: PathLike | number, options: { encoding?: null; flag?: string; } | undefined | null, 

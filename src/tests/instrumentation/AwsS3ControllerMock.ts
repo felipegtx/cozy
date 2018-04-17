@@ -1,6 +1,6 @@
-import { IAwsS3Controller } from "../../service/core/aws/IAwsS3Controller";
-import { AwsConfiguration } from "../../service/core/aws/AwsConfiguration";
-import { AwsS3OkGetObjectResult } from "../../service/core/aws/AWSS3OkGetObjectResult";
+import { AwsConfiguration } from '../../service/core/aws/AwsConfiguration';
+import { AwsS3OkGetObjectResult } from '../../service/core/aws/AWSS3OkGetObjectResult';
+import { IAwsS3Controller } from '../../service/core/aws/IAwsS3Controller';
 
 export class AwsS3ControllerMock implements IAwsS3Controller {
 

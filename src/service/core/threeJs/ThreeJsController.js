@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const THREE = require("three");
 const CustomFBXLoader = require("../../../fbx-reader/fbxReader.js");
 const Box3D_1 = require("../Box3D");
-const Point_1 = require("../Point");
-const THREE = require("three");
 const CozyFS_1 = require("../io/CozyFS");
+const Point_1 = require("../Point");
 class ThreeJsController {
     constructor(fsController = new CozyFS_1.CozyFS()) {
         this.fsController = fsController;

@@ -1,9 +1,10 @@
-import { IGeometryController } from "../IGeometryController";
-import * as CustomFBXLoader from "../../../fbx-reader/fbxReader.js";
-import { Box3D } from "../Box3D";
-import { Point } from "../Point";
-import * as THREE from "three";
-import { CozyFS } from "../io/CozyFS";
+import * as THREE from 'three';
+
+import * as CustomFBXLoader from '../../../fbx-reader/fbxReader.js';
+import { Box3D } from '../Box3D';
+import { IGeometryController } from '../IGeometryController';
+import { CozyFS } from '../io/CozyFS';
+import { Point } from '../Point';
 
 export class ThreeJsController implements IGeometryController {
 

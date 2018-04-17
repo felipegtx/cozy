@@ -1,4 +1,4 @@
-import { awsRegion } from "./enum/awsRegion";
+import { awsRegion } from './enum/awsRegion';
 
 export class AwsConfiguration {
 
