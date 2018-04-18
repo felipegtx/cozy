@@ -14,11 +14,10 @@ const appDir = path.dirname(require.main.filename);
 export class DesignInformation {
     constructor(readonly configuration: AwsConfiguration,
         readonly awsController: IAwsS3Controller = new AwsS3Controller(),
-        readonly geometryController: IGeometryController = new ThreeJsController(),
-        readonly totalItemsToLoad: number = 10) {
+        readonly geometryController: IGeometryController = new ThreeJsController()) {
     }
 
-    getObject(): Promise<DesignInformationResult> {
+    getObject(totalItemsToLoad: number = 10): Promise<DesignInformationResult> {
 
         let targetPath = "";
         return this.awsController.getObject(this.configuration)
@@ -35,7 +34,7 @@ export class DesignInformation {
 
                 let objectWidth = box.width();
                 let midPoint = box.max.x;
-                let totalSpaceRequired = (objectWidth * this.totalItemsToLoad);
+                let totalSpaceRequired = (objectWidth * totalItemsToLoad);
                 let spaceOnEachSide = (totalSpaceRequired / 2);
 
                 let data = new Array<DesignInformationResultItem>();

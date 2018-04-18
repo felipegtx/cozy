@@ -40,6 +40,9 @@ You could either...
     - http://localhost:8080/design/1234?budget=anything&room_type=anything&limit=10&q_api_key=12345
  - Visit the awesome room at: 
     - http://localhost:8080/
+ - Play with the number of items rendered/returned using the `limit` parameter in the URL:
+    - http://localhost:8080/?limit=2
+    - http://localhost:8080/design/1234?budget=anything&room_type=anything&limit=2&q_api_key=12345
 
 PS: Remember to change the port to `8081` when running from Docker.
 

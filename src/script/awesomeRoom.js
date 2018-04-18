@@ -5,7 +5,20 @@ var aweosome = (function () {
         material2 = new THREE.MeshNormalMaterial({
             side: THREE.DoubleSide
         }),
-        uid = "";
+        uid = "",
+        itemsToLoad = 10;
+
+    function getUrlVars() {
+        var vars = [],
+            hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
 
     function init() {
 
@@ -48,12 +61,20 @@ var aweosome = (function () {
         grid.material.transparent = true;
         scene.add(grid);
 
+        /// Because, wy
+        var queryString = getUrlVars();
+        if ("limit" in queryString) {
+            itemsToLoad = queryString["limit"];
+        }
+
         /// data fetch from server
-        $.get("/design/1234?budget=cozy&room_type=bed&limit=10&q_api_key=" + uid, function (data) {
+        $.get("/design/1234?budget=cozy&room_type=bed&limit=" + itemsToLoad + "&q_api_key=" + uid, function (data) {
             var itemWidth = 0;
             var itemCount = data.ItemList.length;
             data.ItemList.forEach((element, i) => {
-                if (itemWidth == 0) {
+                if (itemCount == 1) {
+                    itemWidth = 40;
+                } else if (itemWidth == 0) {
                     itemWidth = element.Position.x;
                 } else if (i === 1) {
                     itemWidth = Math.abs(itemWidth - element.Position.x);
@@ -168,10 +189,10 @@ var aweosome = (function () {
 
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
-                    
+
                     $("#firebaseui-auth-container").hide();
                     uid = user.uid;
-                    $("#logoff").click(function() {
+                    $("#logoff").click(function () {
                         uid = "";
                         firebase.auth().signOut();
                     });
@@ -179,7 +200,7 @@ var aweosome = (function () {
                     if (!Detector.webgl) Detector.addGetWebGLMessage();
                     init();
                     animate();
-                    
+
                 } else {
 
                     $("#logoff").hide();

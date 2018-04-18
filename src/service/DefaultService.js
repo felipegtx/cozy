@@ -17,6 +17,6 @@ exports.getDesignByUserId = function (user_id, budget, room_type, limit) {
 
   return new DesignInformation(new AwsConfiguration(
     awsRegion.EUCentral, 'cozyo-assessment-test', '000001_FloorLamp_0001.FBX'
-  )).getObject();
+  )).getObject(limit);
 
 }

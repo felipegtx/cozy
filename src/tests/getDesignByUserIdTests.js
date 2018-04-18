@@ -41,8 +41,8 @@ describe("Design information services integration", function () {
 
         return expect(new DesignInformation(new AwsConfiguration(
                 awsRegion.EUCentral, "cozyo-assessment-test", "000001_FloorLamp_0001.FBX"
-            ), mockedAwsController, geometryController, expectedItemCount)
-            .getObject()
+            ), mockedAwsController, geometryController)
+            .getObject(expectedItemCount)
             .then(result => {
                 result.ItemList.length.should.be.equal(expectedItemCount);
                 geometryController.loadFrom.called.should.be.true;

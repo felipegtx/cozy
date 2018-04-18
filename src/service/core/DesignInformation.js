@@ -8,13 +8,12 @@ const Point_1 = require("./Point");
 const ThreeJsController_1 = require("./threeJs/ThreeJsController");
 const appDir = path.dirname(require.main.filename);
 class DesignInformation {
-    constructor(configuration, awsController = new AwsS3Controller_1.AwsS3Controller(), geometryController = new ThreeJsController_1.ThreeJsController(), totalItemsToLoad = 10) {
+    constructor(configuration, awsController = new AwsS3Controller_1.AwsS3Controller(), geometryController = new ThreeJsController_1.ThreeJsController()) {
         this.configuration = configuration;
         this.awsController = awsController;
         this.geometryController = geometryController;
-        this.totalItemsToLoad = totalItemsToLoad;
     }
-    getObject() {
+    getObject(totalItemsToLoad = 10) {
         let targetPath = "";
         return this.awsController.getObject(this.configuration)
             /// Gather geometry information from the file we just downloaded from AWS
@@ -27,7 +26,7 @@ class DesignInformation {
             .then(box => {
             let objectWidth = box.width();
             let midPoint = box.max.x;
-            let totalSpaceRequired = (objectWidth * this.totalItemsToLoad);
+            let totalSpaceRequired = (objectWidth * totalItemsToLoad);
             let spaceOnEachSide = (totalSpaceRequired / 2);
             let data = new Array();
             for (var i = -spaceOnEachSide; i < spaceOnEachSide; i += objectWidth) {
