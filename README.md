@@ -41,6 +41,8 @@ You could either...
  - Visit the awesome room at: 
     - http://localhost:8080/
 
+PS: Remember to change the port to `8081` when running from Docker.
+
 ## API Reference
  - [Swagger](https://app.swaggerhub.com/apis/felipegtx9/procedural-design/0.0.2)
 
