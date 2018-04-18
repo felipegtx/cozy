@@ -27,7 +27,7 @@ export class DesignInformation {
             .then(result => {
                 let pathToLocalFbxFile = result.pathToLocalFbxFile;
                 targetPath = result.targetPath;
-                return this.geometryController.loadFrom(pathToLocalFbxFile)
+                return this.geometryController.loadFrom(pathToLocalFbxFile);
             })
 
             /// Build the response information with the data we're expecting from the API
@@ -45,6 +45,10 @@ export class DesignInformation {
                 }
 
                 return new DesignInformationResult(data);
+            })
+            .catch(e => {
+                console.error(e);
+                return null;
             });
     }
 }

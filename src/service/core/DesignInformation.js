@@ -34,6 +34,10 @@ class DesignInformation {
                 data.push(new DesignInformationResultItem_1.DesignInformationResultItem(new Point_1.Point(i + midPoint, 0, 0), targetPath, this.configuration.key));
             }
             return new DesignInformationResult_1.DesignInformationResult(data);
+        })
+            .catch(e => {
+            console.error(e);
+            return null;
         });
     }
 }
