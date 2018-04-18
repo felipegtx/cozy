@@ -28,7 +28,7 @@ describe("Design information services integration", function () {
                 awsRegion.EUCentral, 'cozyo-assessment-test', '000001_FloorLamp_0001.FBX'
             ), new AwsS3ControllerMock(null, errorMessage))
             .getObject())
-            .to.be.fulfilled.with(null);
+            .eventually.equal(null);
     });
 
     it("should handle AWS success response", function () {
