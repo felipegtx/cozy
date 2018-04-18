@@ -1,0 +1,21 @@
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0px;
+    overflow: hidden;
+}
+
+#logoff {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    background-color:steelblue;
+    color: white;
+    font-family: 'Courier New';
+    cursor: pointer;
+}
+
+#firebaseui-auth-container { 
+    margin: 50px 10px 10px 10px;
+}

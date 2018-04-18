@@ -10,9 +10,13 @@ class AwsS3Controller {
         return new Promise((ok, reject) => {
             let targetPath = '/assets/';
             let pathToLocalFbxFile = appDir + targetPath + configuration.key;
+            if (pathToLocalFbxFile in AwsS3Controller.downloadedFiles) {
+                ok(new AWSS3OkGetObjectResult_1.AwsS3OkGetObjectResult(pathToLocalFbxFile, targetPath));
+                return;
+            }
             let s3 = new AWS.S3({ region: configuration.region });
-            var downloadSucceded = true;
             var file = fs.createWriteStream(pathToLocalFbxFile, { encoding: 'utf16le' });
+            var downloadSucceded = true;
             s3.getObject(configuration.getAwsOptions())
                 .on('error', (err) => {
                 downloadSucceded = false;
@@ -29,11 +33,13 @@ class AwsS3Controller {
                     reject("Nok");
                     return;
                 }
+                AwsS3Controller.downloadedFiles.add(pathToLocalFbxFile);
                 ok(new AWSS3OkGetObjectResult_1.AwsS3OkGetObjectResult(pathToLocalFbxFile, targetPath));
             })
                 .send();
         });
     }
 }
+AwsS3Controller.downloadedFiles = new Set();
 exports.AwsS3Controller = AwsS3Controller;
 //# sourceMappingURL=AwsS3Controller.js.map

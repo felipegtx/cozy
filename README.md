@@ -29,12 +29,17 @@ Not that we have that many, but you also have two options
  - Get your `awsKey` and `awsSecret` from the `~/.aws/credentials` file and use it to build the docker Image: `docker build --build-arg awsKey=yourkey --build-arg awsSecret=yourSecret -t cozyo .`
  - Start the docker container: `docker run --name cozy -p 8081:8080 cozyo`
 
+## Default login information
+To authenticate in the app you can use the following credentials or create a new one:
+ - Email: `cozy@awesomeapp.com`
+ - Password: `cozyLife`
+
 ## What can I do with this?
 You could either...
  - View the test data at:
     - http://localhost:8080/design/1234?budget=anything&room_type=anything&limit=10&q_api_key=12345
  - Visit the awesome room at: 
-    - http://localhost:8080/awesomeRoom.html
+    - http://localhost:8080/
 
 ## API Reference
  - [Swagger](https://app.swaggerhub.com/apis/felipegtx9/procedural-design/0.0.2)
