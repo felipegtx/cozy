@@ -2,6 +2,8 @@
 
 Feeling Cozy already?
 
+![cozy](https://user-images.githubusercontent.com/1022404/42698804-597d5e7e-8695-11e8-838c-4677013becfa.gif)
+
 ## First things first
 - `npm install`
 
