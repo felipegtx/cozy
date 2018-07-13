@@ -52,4 +52,4 @@ PS: Remember to change the port to `8081` when running from Docker.
  - [Swagger](https://app.swaggerhub.com/apis/felipegtx9/procedural-design/0.0.2)
 
 ## Extra info
-[![Build Status](https://travis-ci.org/felipegtx/cozy.svg?branch=master)](https://travis-ci.org/felipegtx/cozy) [![Known Vulnerabilities](https://snyk.io/test/github/felipegtx/cozy/badge.svg)](https://snyk.io/test/github/felipegtx/cozy) [![bitHound Overall Score](https://www.bithound.io/github/felipegtx/cozy/badges/score.svg)](https://www.bithound.io/github/felipegtx/cozy)
+[![Build Status](https://travis-ci.org/felipegtx/cozy.svg?branch=master)](https://travis-ci.org/felipegtx/cozy) [![Known Vulnerabilities](https://snyk.io/test/github/felipegtx/cozy/badge.svg)](https://snyk.io/test/github/felipegtx/cozy) 
