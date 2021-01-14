@@ -15,7 +15,7 @@
     "private": true,
     "dependencies": {
         "@types/node": "^9.6.5",
-        "aws-sdk": "^2.224.1",
+        "aws-sdk": "^2.814.0",
         "chai": "^4.1.2",
         "chai-as-promised": "^7.1.1",
         "connect": "^3.6.6",
