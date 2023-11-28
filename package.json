@@ -24,7 +24,7 @@
         "promise-fs": "^1.3.0",
         "serve-static": "^1.13.2",
         "sinon": "^4.5.0",
-        "swagger-tools": "0.10.2",
+        "swagger-tools": "0.10.4",
         "three-fbx-loader": "^1.0.3"
     },
     "devDependencies": {
